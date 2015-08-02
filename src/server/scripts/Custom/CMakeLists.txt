@@ -19,6 +19,7 @@ set(scripts_STAT_SRCS
   Custom/serucporter.cpp
   Custom/eventnpc.cpp
   Custom/bossscript.cpp
+  Custom/anna.cpp
   ${scripts_STAT_SRCS}
 #  ${sources_Custom}
   Custom/Transmog/Transmogrification.h
