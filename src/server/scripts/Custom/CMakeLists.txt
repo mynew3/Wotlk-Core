@@ -21,6 +21,7 @@ set(scripts_STAT_SRCS
   Custom/bossscript.cpp
   Custom/tyranium.cpp
   Custom/anna.cpp
+  Custom/racechange.cpp
   ${scripts_STAT_SRCS}
 #  ${sources_Custom}
   Custom/Transmog/Transmogrification.h
