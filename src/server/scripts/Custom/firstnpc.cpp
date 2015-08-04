@@ -57,11 +57,14 @@ class npc_first_char : public CreatureScript
 							std::string accname = (*accountname)[0].GetString();
 
 							/*Acccountanzahl zählen*/
-							QueryResult accountanz = CharacterDatabase.PQuery("SELECT count(account) FROM first_char WHERE guid = %u", guid);
-							uint32 accounanzint = (*accountanz)[0].GetUInt32();
+							QueryResult accountanz = CharacterDatabase.PQuery("SELECT account FROM characters WHERE guid = %u", guid);
+							uint32 accountanzint = (*accountanz)[0].GetUInt32();
+							QueryResult accountgesanz = CharacterDatabase.PQuery("SELECT count(account) FROM first_char WHERE account = '%u'", accountanzint);
+							uint32 accountanzgesint = (*accountgesanz)[0].GetUInt32();
+
 						
 
-							if (charresultint == 1 && ipadrcountint == 1 && onecharint != 1 && accounanzint <= 2){
+							if (charresultint == 1 && ipadrcountint == 1 && onecharint != 1 && accountanzgesint <3){
 								
 								 time_t sek;
 								 time(&sek);
@@ -100,7 +103,8 @@ class npc_first_char : public CreatureScript
 
 					case 0:
 						{
-							pPlayer->GetGUID();
+							uint32 guid = pPlayer->GetGUID();
+											
 							pPlayer->SEND_GOSSIP_MENU(DEFAULT_GOSSIP_MESSAGE, pCreature->GetGUID());
 							pPlayer->PlayerTalkClass->ClearMenus();
 							pPlayer->ADD_GOSSIP_ITEM(7, "Einzelausstattung. Wer/Was/Wie?", GOSSIP_SENDER_MAIN, 5);
@@ -152,7 +156,7 @@ class npc_first_char : public CreatureScript
 					case 9:
 					{
 						pPlayer->GetGUID();
-						ChatHandler(pPlayer->GetSession()).PSendSysMessage("[Aufwertungs System]:\nUm eine Austattung über die gleiche IP vornehmen zu lassen muesst ihr euch BEIDE ins TS begeben. Fragt dort nach einem GM, dieser wird ueberpruefen ob alles für eine Ausstattung erfuellt ist und diese dann durchfuehren.",
+						ChatHandler(pPlayer->GetSession()).PSendSysMessage("[Aufwertungs System]:\nUm eine Austattung ueber die gleiche IP vornehmen zu lassen muesst ihr euch BEIDE ins TS begeben. Fragt dort nach einem GM, dieser wird ueberpruefen ob alles für eine Ausstattung erfuellt ist und diese dann durchfuehren.",
 							pPlayer->GetName());
 						pPlayer->PlayerTalkClass->SendCloseGossip();
 						return true;
@@ -205,11 +209,14 @@ class npc_first_char : public CreatureScript
 								uint32 zeit = time(&sek);
 								uint32 zeitraum = zeit - guildcreateint;
 								
+								
 								/*Acccountanzahl zählen*/
-								QueryResult accountanz = CharacterDatabase.PQuery("SELECT count(account) FROM first_char WHERE guid = %u", guid);
-								uint32 accounanzint = (*accountanz)[0].GetUInt32();
+								QueryResult accountanz = CharacterDatabase.PQuery("SELECT account FROM characters WHERE guid = %u", guid);
+								uint32 accountanzint = (*accountanz)[0].GetUInt32();
+								QueryResult accountgesanz = CharacterDatabase.PQuery("SELECT count(account) FROM first_char WHERE account = '%u'", accountanzint);
+								uint32 accountanzgesint = (*accountgesanz)[0].GetUInt32();
 
-								if (guildmemberint >= 10 && guildmemberint < 25 && zeitraum <1209600 && charresultint == 1 && ipadrcountint == 1 && onecharint != 1 && accounanzint <= 2){
+								if (guildmemberint >= 10 && guildmemberint < 25 && zeitraum <1209600 && charresultint == 1 && ipadrcountint == 1 && onecharint != 1 && accountanzgesint < 2){
 									pPlayer->SetLevel(80);
 									pPlayer->LearnDefaultSkill(762, 3);
 									pPlayer->TeleportTo(0, -795.73, 1495.50, 104.54, 1.05, 0);
@@ -292,8 +299,10 @@ class npc_first_char : public CreatureScript
 							uint32 ipadrcountint = (*ipadrcount)[0].GetUInt32();
 
 							/*Acccountanzahl zählen*/
-							QueryResult accountanz = CharacterDatabase.PQuery("SELECT count(account) FROM first_char WHERE guid = %u", guid);
-							uint32 accounanzint = (*accountanz)[0].GetUInt32();
+							QueryResult accountanz = CharacterDatabase.PQuery("SELECT account FROM characters WHERE guid = %u", guid);
+							uint32 accountanzint = (*accountanz)[0].GetUInt32();
+							QueryResult accountgesanz = CharacterDatabase.PQuery("SELECT count(account) FROM first_char WHERE account = '%u'", accountanzint);
+							uint32 accountanzgesint = (*accountgesanz)[0].GetUInt32();
 
 							time_t sek;
 							time(&sek);
@@ -302,7 +311,7 @@ class npc_first_char : public CreatureScript
 
 							
 
-							if (guildmemberint > 25 && zeitraum <1209600 && charresultint == 1 && ipadrcountint == 1 && onecharint !=1 && accounanzint <= 2){
+							if (guildmemberint > 25 && zeitraum <1209600 && charresultint == 1 && ipadrcountint == 1 && onecharint !=1 && accountanzgesint <3){
 								pPlayer->SetLevel(80);
 								pPlayer->LearnDefaultSkill(762, 4);
 								pPlayer->TeleportTo(0, -795.73, 1495.50, 104.54, 1.05, 0);

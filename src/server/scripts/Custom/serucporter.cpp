@@ -195,6 +195,7 @@ public: seruc() : CreatureScript("seruc"){ }
 
 
 			}
+			return true;
 		}
 
 };

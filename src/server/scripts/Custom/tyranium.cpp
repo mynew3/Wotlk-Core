@@ -180,7 +180,7 @@ public:
 					_events.ScheduleEvent(EVENT_SARGERAS, 5000);
 					break;
 				case EVENT_BURN:
-					DoCastVictim(SPELL_BURN);
+					DoCastToAllHostilePlayers(SPELL_BURN);
 					_events.ScheduleEvent(EVENT_BURN, 35000);
 					break;
 
