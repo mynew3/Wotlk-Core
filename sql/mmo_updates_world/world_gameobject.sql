@@ -142,7 +142,7 @@ REPLACE INTO `gameobject` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`,
 
 
 /* SPERRGATTER */
-
+DELETE FROM `gameobject` WHERE `guid` = 800066;
 /*SPERRGATTER ENDE */
 
 REPLACE INTO `gameobject` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `position_x`, `position_y`, `position_z`, `orientation`, `rotation2`, `rotation3`, `spawntimesecs`, `animprogress`, `state`, `VerifiedBuild`) VALUES ('800067', '190667', '0', '40', '2', '1', '1', '-1208.22', '1609.02', '54.21', '1.60', '-0.38', '0.92388', '300', '0', '1', '1');
