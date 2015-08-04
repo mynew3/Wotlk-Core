@@ -15,7 +15,8 @@ enum Spells
 	SPELL_PIERCING_SLASH = 48878,
 	SPELL_BLOOD_MIRROR_DAMAGE = 70821,
 	SPELL_ANNOYING_YIPPING = 31015,
-	SPELL_BITING_COLD = 62188
+	SPELL_SARGERAS = 28342,
+	SPELL_BURN = 46218
 };
 
 enum Events
@@ -29,7 +30,8 @@ enum Events
 	EVENT_PIERCING_SLASH = 7,
 	EVENT_BLOOD_MIRROR_DAMAGE = 8,
 	EVENT_ANNOYING_YIPPING = 9,
-	EVENT_BITING_COLD = 10
+	EVENT_SARGERAS = 10,
+	EVENT_BURN = 11
 
 };
 
@@ -77,7 +79,7 @@ public:
 			_events.ScheduleEvent(EVENT_MANA_DESTRUCTION, 1000);
 			_events.ScheduleEvent(EVENT_BRAIN_LINK_DAMAGE, 10000);
 			_events.ScheduleEvent(EVENT_MANGLING_SLASH, 8000);
-			_events.ScheduleEvent(EVENT_BITING_COLD, 5000);
+			_events.ScheduleEvent(EVENT_SARGERAS, 5000);
 
 		}
 
@@ -100,6 +102,7 @@ public:
 				_events.ScheduleEvent(EVENT_PIERCING_SLASH, 10000);
 				_events.ScheduleEvent(EVENT_NECROTIC_POISON, 12000); 
 				_events.ScheduleEvent(EVENT_ANNOYING_YIPPING, 25000);
+				_events.ScheduleEvent(EVENT_BURN, 35000);
 			}
 		}
 
@@ -172,9 +175,13 @@ public:
 					DoCastToAllHostilePlayers(SPELL_ANNOYING_YIPPING);
 					_events.ScheduleEvent(EVENT_ANNOYING_YIPPING, 25000);
 					break;
-				case EVENT_BITING_COLD:
-					DoCastToAllHostilePlayers(SPELL_BITING_COLD);
-					_events.ScheduleEvent(EVENT_BITING_COLD, 5000);
+				case EVENT_SARGERAS:
+					DoCastToAllHostilePlayers(SPELL_SARGERAS);
+					_events.ScheduleEvent(EVENT_SARGERAS, 5000);
+					break;
+				case EVENT_BURN:
+					DoCastVictim(SPELL_BURN);
+					_events.ScheduleEvent(EVENT_BURN, 35000);
 					break;
 
 

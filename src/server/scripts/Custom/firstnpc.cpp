@@ -88,7 +88,7 @@ class npc_first_char : public CreatureScript
 							 							
 							 else {
 								 pPlayer->GetGUID();
-								 ChatHandler(pPlayer->GetSession()).PSendSysMessage("[Aufwertungs System] Du hast bereits einen anderen Charakter auf diesem Realm oder versuchst mit zu vielen Accounts eine Erstaustattung zu erlangen.\nDiese wird daher abgelehnt.\nMfG Exitare und das MMOwning-Team.",
+								 ChatHandler(pPlayer->GetSession()).PSendSysMessage("[Aufwertungs System]\nDu hast bereits einen anderen Charakter auf diesem Realm oder versuchst mit zu vielen Accounts eine Erstaustattung zu erlangen.\nDiese wird daher abgelehnt.\nMfG Exitare und das MMOwning-Team.",
 								 pPlayer->GetName());
 								 pPlayer->PlayerTalkClass->SendCloseGossip();
 								 return true;
