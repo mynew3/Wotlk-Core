@@ -108,7 +108,8 @@ void AddSC_anna();
 void AddSC_Race_Change_NPC();
 //allianzboss
 void AddSC_alliance_boss();
-
+//supportnpc
+void AddSC_supportnpc();
 
 
 #ifdef SCRIPTS
@@ -834,6 +835,8 @@ void AddCommandScripts()
 	AddSC_Race_Change_NPC();
 	//allianzboss
 	AddSC_alliance_boss();
+	//supportnpc
+	AddSC_supportnpc();
 }
 
 void AddWorldScripts()

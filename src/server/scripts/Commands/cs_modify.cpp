@@ -1241,7 +1241,6 @@ public:
 		chr->Kill(target,true);
 		target->DeMorph();
 		
-
         return true;
     }
 
