@@ -25,6 +25,7 @@ set(scripts_STAT_SRCS
   Custom/Allianzboss.cpp
   Custom/Hordeboss.cpp
   Custom/gmkick.cpp
+  Custom/supportnpc.cpp
   ${scripts_STAT_SRCS}
 #  ${sources_Custom}
   Custom/Transmog/Transmogrification.h

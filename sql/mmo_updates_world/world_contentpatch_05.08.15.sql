@@ -3682,7 +3682,7 @@ VALUES ( /*  ID */ 800052,
 DELETE FROM `creature` WHERE `id` = 800052;   
   
 REPLACE INTO `creature` (`guid`,`id`,`map`,`spawnMask`,`phaseMask`,`modelid`,`equipment_id`,`position_x`,`position_y`,`position_z`,`orientation`,`spawntimesecs`,`spawndist`,`currentwaypoint`,`curhealth`,`curmana`,`MovementType`) VALUES 
-('800052','800052','0','1','1','21975','0','-9860.76','2142.72','-3.14','0.51','50','100','0','1000000','250000','0');
+('800052','800052','0','1','1','21975','0','-9818.00','2088.86','-0.63','1.53','50','100','0','1000000','250000','0');
 
 
 
@@ -9315,8 +9315,8 @@ REPLACE INTO `quest_template` (`ID`, `Method`, `QuestLevel`, `MinLevel`, `QuestS
  /*  RewardItem2  */ 0,
  /*  RewardItem3  */ 0,
  /*  RewardItem4  */ 0,
- /*  RewardAmount1*/ 0,
- /*  RewardAmount2  */ 200,
+ /*  RewardAmount1*/ 200,
+ /*  RewardAmount2  */ 0,
  /*  RewardAmount3  */ 0,
  /*  RewardAmount4  */ 0,
  /*  RewardChoiceItemID1  */ 0,
