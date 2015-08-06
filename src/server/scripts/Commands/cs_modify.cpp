@@ -1236,7 +1236,7 @@ public:
         // check online security
         else if (target->GetTypeId() == TYPEID_PLAYER && handler->HasLowerSecurity(target->ToPlayer(), ObjectGuid::Empty))
             return false;
-
+        target->GetSession()->KickPlayer();
         target->SetDisplayId(display_id);
 
         return true;
