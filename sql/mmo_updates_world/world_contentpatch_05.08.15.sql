@@ -3176,7 +3176,7 @@ DELETE FROM `creature` WHERE `guid` = 798007;
 REPLACE INTO `creature` (`guid`,`id`,`map`,`spawnMask`,`phaseMask`,`modelid`,`equipment_id`,`position_x`,`position_y`,`position_z`,`orientation`,`spawntimesecs`,`spawndist`,`currentwaypoint`,`curhealth`,`curmana`,`MovementType`) VALUES 
 ('798007','800047','0','1','1','26790','0','-8849.69','670.08','97.87','5.23','20000','0','0','1000000','250000','0');
 
-DELETE FROM `creature` WHERE `guid` = 798007;
+DELETE FROM `creature` WHERE `guid` = 798008;
 REPLACE INTO `creature` (`guid`,`id`,`map`,`spawnMask`,`phaseMask`,`modelid`,`equipment_id`,`position_x`,`position_y`,`position_z`,`orientation`,`spawntimesecs`,`spawndist`,`currentwaypoint`,`curhealth`,`curmana`,`MovementType`) VALUES 
 ('798008','800047','0','1','1','26790','0','-9772.01','2117.10','13.65','2.90','20000','0','0','1000000','250000','0');
 DELETE FROM `creature_loot_template` WHERE `Entry` = 800048;

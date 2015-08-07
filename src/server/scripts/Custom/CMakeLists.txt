@@ -24,8 +24,8 @@ set(scripts_STAT_SRCS
   Custom/racechange.cpp
   Custom/Allianzboss.cpp
   Custom/Hordeboss.cpp
-  Custom/gmkick.cpp
   Custom/supportnpc.cpp
+  Custom/teleportitem.cpp
   ${scripts_STAT_SRCS}
 #  ${sources_Custom}
   Custom/Transmog/Transmogrification.h

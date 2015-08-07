@@ -110,6 +110,8 @@ void AddSC_Race_Change_NPC();
 void AddSC_alliance_boss();
 //supportnpc
 void AddSC_supportnpc();
+//teleportitem
+void AddSC_port_item();
 
 
 #ifdef SCRIPTS
@@ -837,6 +839,8 @@ void AddCommandScripts()
 	AddSC_alliance_boss();
 	//supportnpc
 	AddSC_supportnpc();
+	//teleportitem
+	AddSC_port_item();
 }
 
 void AddWorldScripts()
