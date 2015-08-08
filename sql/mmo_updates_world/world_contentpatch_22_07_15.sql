@@ -2876,7 +2876,7 @@ VALUES ( /*  ID */ 800031,
   /*  mechanic_immune_mask` */2147483647, 
   /*  flags_extra` */0, 
   /* Scriptname  */'');
-UPDATE `creature_template` SET `HealthModifier`='10', `ArmorModifier`='1', `DamageModifier`='10' WHERE `entry`='800031';
+UPDATE `creature_template` SET `HealthModifier`='20', `ArmorModifier`='1', `DamageModifier`='20' WHERE `entry`='800031';
 
 
 REPLACE INTO `gossip_menu_option` (`menu_id`, `id`, `option_icon`, `option_text`, `OptionBroadcastTextID`, `option_id`, `npc_option_npcflag`, `box_text`) VALUES ('60003', '1', '0', 'Gebt mir eine zweite Chance.', '0', '1', '1', '');  

@@ -114,6 +114,8 @@ void AddSC_supportnpc();
 void AddSC_exitare();
 //orrig
 void AddSC_orrig();
+//tolreos
+void AddSC_tolreos();
 
 #ifdef SCRIPTS
 //world
@@ -844,6 +846,8 @@ void AddCommandScripts()
 	AddSC_exitare();
 	//orrig
 	AddSC_orrig();
+	//tolreos
+	AddSC_tolreos();
 }
 
 void AddWorldScripts()

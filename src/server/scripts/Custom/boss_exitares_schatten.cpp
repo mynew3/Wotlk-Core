@@ -12,9 +12,9 @@ enum Spells
 	SPELL_RAIN_OF_FIRE = 59971,
 	SPELL_FLAME_BURST = 41131,
 	SPELL_ARCANE_BOMB = 56431,
-	SPELL_SHIELD_BLOCK = 66046,
+	SPELL_LIGHT_VORTEX = 66046,
 	SPELL_MOONFIRE = 48463,
-	SPELL_50000_VOLT = 164192,
+	SPELL_SPALTEN = 20691,
 	SPELL_SARGERAS = 28342,
 	SPELL_BURN = 46218
 };
@@ -27,10 +27,10 @@ enum Events
 	EVENT_RAIN_OF_FIRE = 4,
 	EVENT_FLAME_BURST = 5,
 	EVENT_ARCANE_BOMB = 6,
-	EVENT_SHIELD_BLOCK = 7,
+	EVENT_LIGHT_VORTEX = 7,
 	EVENT_MOONFIRE = 8,
 	EVENT_SUMMONS = 9,
-	EVENT_50000_VOLT = 10,
+	EVENT_SPALTEN= 10,
 	EVENT_BURN = 11
 
 
@@ -80,7 +80,7 @@ public:
 			_events.ScheduleEvent(EVENT_TOXIC_WASTE, 8000);
 			_events.ScheduleEvent(EVENT_POISON_NOVA, 10000);
 			_events.ScheduleEvent(EVENT_MOONFIRE, 8000);
-			_events.ScheduleEvent(EVENT_50000_VOLT, 15000);
+			_events.ScheduleEvent(EVENT_SPALTEN, 15000);
 
 		}
 
@@ -89,7 +89,7 @@ public:
 			if (me->HealthBelowPctDamaged(75, damage) && _events.IsInPhase(PHASE_ONE))
 			{
 				_events.SetPhase(PHASE_TWO);
-				_events.ScheduleEvent(EVENT_SHIELD_BLOCK, 10000);
+				_events.ScheduleEvent(EVENT_LIGHT_VORTEX, 10000);
 				_events.ScheduleEvent(EVENT_RAIN_OF_FIRE, 8000);
 				_events.ScheduleEvent(EVENT_FLAME_BURST, 12000);
 				_events.ScheduleEvent(EVENT_SUMMONS, 10000);
@@ -103,7 +103,7 @@ public:
 				_events.ScheduleEvent(EVENT_POISON_NOVA, 15000);
 				_events.ScheduleEvent(EVENT_TOXIC_WASTE, 6000);
 				_events.ScheduleEvent(EVENT_ENRAGE, 25000);
-				_events.ScheduleEvent(EVENT_BURN, 12000);
+				_events.ScheduleEvent(EVENT_SPALTEN, 12000);
 			}
 		}
 
@@ -127,14 +127,7 @@ public:
 			sWorld->SendGlobalText(msg, NULL);
 		}
 
-		void KillPlayer(Unit * pPlayer)
-		{
-			char msg[250];
-			snprintf(msg, 250, "|cffff0000[Boss System]|r Boss|cffff6060 Exitares Schatten|r hat einen weiteren Noob getoetet! ", pPlayer->GetName());
-			sWorld->SendGlobalText(msg, NULL);
-			_events.ScheduleEvent(EVENT_SUMMONS, 10000);
-
-		}
+		
 
 		void UpdateAI(uint32 diff) override
 		{
@@ -170,23 +163,24 @@ public:
 				case EVENT_SUMMONS:
 					Talk(SAY_HELP);
 					me->SummonCreature(NPC_PUSTELIGER_SCHRECKEN, me->GetPositionX() + 5, me->GetPositionY(), me->GetPositionZ() + 5, 0, TEMPSUMMON_CORPSE_DESPAWN, 12000);
+					_events.ScheduleEvent(EVENT_SUMMONS, 30000);
 					break;
 				case EVENT_ARCANE_BOMB:
 					Talk(SAY_ENRAGE);
 					DoCast(me, SPELL_ARCANE_BOMB);
 					_events.ScheduleEvent(EVENT_ARCANE_BOMB, 10000);
 					break;
-				case EVENT_SHIELD_BLOCK:
-					DoCast(me, SPELL_SHIELD_BLOCK);
-					_events.ScheduleEvent(EVENT_SHIELD_BLOCK, 15000);
+				case EVENT_LIGHT_VORTEX:
+					DoCast(me, SPELL_LIGHT_VORTEX);
+					_events.ScheduleEvent(EVENT_LIGHT_VORTEX, 15000);
 					break;
 				case EVENT_MOONFIRE:
 					DoCastToAllHostilePlayers(SPELL_MOONFIRE);
 					_events.ScheduleEvent(EVENT_MOONFIRE, 10000);
 					break;
-				case EVENT_50000_VOLT:
-					DoCastVictim(SPELL_50000_VOLT);
-					_events.ScheduleEvent(EVENT_50000_VOLT, 25000);
+				case EVENT_SPALTEN:
+					DoCastVictim(SPELL_SPALTEN);
+					_events.ScheduleEvent(EVENT_SPALTEN, 20000);
 					break;
 				case SPELL_BURN:
 					DoCastToAllHostilePlayers(SPELL_BURN);
