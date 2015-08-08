@@ -14,12 +14,13 @@ public:
 		return true;
 	}
 	
-		bool OnGossipSelect(Player * pPlayer, Creature * pCreature, uint32 /*uiSender*/, uint32 uiAction)
+		bool OnGossipSelect(Player * pPlayer, Creature * pCreature, uint32 /*uiSender*/, uint32 uiAction, Quest * quest)
 		{
 			switch (uiAction)
 			{
 				case 0:
 				{
+					
 					pPlayer->GetGUID();
 					ChatHandler(pPlayer->GetSession()).PSendSysMessage("Ja, es gibt eine Erstaustattung. In jedem Startgebiet steht der entsprechende NPC. Es darf nur der erste Charakter ausgestattet werden.", pPlayer->GetName());
 					pPlayer->PlayerTalkClass->SendCloseGossip();
