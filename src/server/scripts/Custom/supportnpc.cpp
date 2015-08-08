@@ -14,7 +14,7 @@ public:
 		return true;
 	}
 	
-		bool OnGossipSelect(Player * pPlayer, Creature * pCreature, uint32 /*uiSender*/, uint32 uiAction, Quest * quest)
+		bool OnGossipSelect(Player * pPlayer, Creature * pCreature, uint32 /*uiSender*/, uint32 uiAction)
 		{
 			switch (uiAction)
 			{

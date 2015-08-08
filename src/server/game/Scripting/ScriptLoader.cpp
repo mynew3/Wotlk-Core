@@ -110,9 +110,10 @@ void AddSC_Race_Change_NPC();
 void AddSC_alliance_boss();
 //supportnpc
 void AddSC_supportnpc();
-//teleportitem
-void AddSC_port_item();
-
+//exitare_schatten
+void AddSC_exitare();
+//orrig
+void AddSC_orrig();
 
 #ifdef SCRIPTS
 //world
@@ -839,8 +840,10 @@ void AddCommandScripts()
 	AddSC_alliance_boss();
 	//supportnpc
 	AddSC_supportnpc();
-	//teleportitem
-	AddSC_port_item();
+	//exitare_schatten
+	AddSC_exitare();
+	//orrig
+	AddSC_orrig();
 }
 
 void AddWorldScripts()
