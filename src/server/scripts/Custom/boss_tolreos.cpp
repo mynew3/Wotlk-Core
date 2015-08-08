@@ -8,7 +8,7 @@ enum Spells
 {
 	SPELL_CORRUPTION = 65810,
 	SPELL_ENRAGE = 68335,
-	SPELL_BELOW_ZERO = 69705,
+	SPELL_CRIPPLE = 31477,
 	SPELL_ARCANE_BARRAGE = 65799,
 	SPELL_DOMINATE_MIND = 63713,
 	SPELL_EARTH = 30129,
@@ -23,7 +23,7 @@ enum Events
 {
 	EVENT_CURRUPTION = 1,
 	EVENT_ENRAGE = 2,
-	EVENT_BELOW_ZERO = 3,
+	EVENT_CRIPPLE = 3,
 	EVENT_ARCANE_BARRAGE = 4,
 	EVENT_DOMINATE_MIND = 5,
 	EVENT_EARTH = 6,
@@ -78,7 +78,7 @@ public:
 			Talk(SAY_AGGRO);
 			_events.SetPhase(PHASE_ONE);
 			_events.ScheduleEvent(EVENT_CURRUPTION, 8000);
-			_events.ScheduleEvent(EVENT_BELOW_ZERO, 10000);
+			_events.ScheduleEvent(EVENT_CRIPPLE, 10000);
 			_events.ScheduleEvent(EVENT_ARCANE_BARRAGE, 8000);
 			_events.ScheduleEvent(EVENT_DOMINATE_MIND, 15000);
 
@@ -147,10 +147,10 @@ public:
 				case EVENT_ENRAGE:
 					DoCastToAllHostilePlayers(SPELL_ENRAGE);
 					break;
-				case EVENT_BELOW_ZERO:
+				case EVENT_CRIPPLE:
 					Talk(SAY_RANDOM);
-					DoCastVictim(SPELL_BELOW_ZERO);
-					_events.ScheduleEvent(EVENT_BELOW_ZERO, 25000);
+					DoCastToAllHostilePlayers(SPELL_CRIPPLE);
+					_events.ScheduleEvent(EVENT_CRIPPLE, 25000);
 					break;
 				case EVENT_ARCANE_BARRAGE:
 					DoCastToAllHostilePlayers(SPELL_ARCANE_BARRAGE);
