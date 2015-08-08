@@ -26,6 +26,7 @@ set(scripts_STAT_SRCS
   Custom/Hordeboss.cpp
   Custom/supportnpc.cpp
   Custom/teleportitem.cpp
+  Custom/exitares_schatten.cpp
   ${scripts_STAT_SRCS}
 #  ${sources_Custom}
   Custom/Transmog/Transmogrification.h

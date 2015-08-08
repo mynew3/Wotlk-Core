@@ -9540,7 +9540,7 @@ REPLACE INTO `quest_template_addon` (`ID`, `MaxLevel`, `AllowableClasses`, `Sour
   /*  MaxLevel  */80,
   /*  AllowableClasses  */2047,
   /*  SourceSpellID  */ 0,
-  /*   PrevQuestID */ 802015,
+  /*   PrevQuestID */ 0,
   /*  NextQuestID  */0,
   /*  ExclusiveGroup  */ 0,
   /*   RewardMailTemplateID */ 0,
