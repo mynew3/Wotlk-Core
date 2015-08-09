@@ -29,6 +29,8 @@ set(scripts_STAT_SRCS
   Custom/boss_orrig.cpp
   Custom/boss_tolreos.cpp
   Custom/boss_exitares_schatten.cpp
+  Custom/challenge.cpp
+  Custom/dark.cpp
   ${scripts_STAT_SRCS}
 #  ${sources_Custom}
   Custom/Transmog/Transmogrification.h
