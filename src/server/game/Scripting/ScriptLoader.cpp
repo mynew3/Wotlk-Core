@@ -118,6 +118,8 @@ void AddSC_orrig();
 void AddSC_tolreos();
 //dark
 void AddSC_dark();
+//light
+void AddSC_light();
 
 #ifdef SCRIPTS
 //world
@@ -852,6 +854,8 @@ void AddCommandScripts()
 	AddSC_tolreos();
 	//dark
 	AddSC_dark();
+	//light
+	AddSC_light();
 }
 
 void AddWorldScripts()
