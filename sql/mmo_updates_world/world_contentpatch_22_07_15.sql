@@ -470,10 +470,10 @@ VALUES (14887, 700506, 0, 10, 1, 1, 0, 1, 1);
 
 /*VERDAMMNISWANDLER - VERDAMMNISLORD */
 REPLACE INTO `creature_loot_template` (`Entry`,`Item`,`Reference`, `Chance`, `QuestRequired`, `LootMode`, `GroupId`, `MinCount`, `MaxCount`)
-VALUES (17711, 700507, 0, 100, 1, 1, 0, 1, 1); 
+VALUES (17711, 700507, 0, 10, 1, 1, 0, 1, 1); 
 
 REPLACE INTO `creature_loot_template` (`Entry`,`Item`,`Reference`, `Chance`, `QuestRequired`, `LootMode`, `GroupId`, `MinCount`, `MaxCount`)
-VALUES (18728, 700508, 0, 100, 1, 1, 0, 1, 1); 
+VALUES (18728, 700508, 0, 10, 1, 1, 0, 1, 1); 
 
 
 
