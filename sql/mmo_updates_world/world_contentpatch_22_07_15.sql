@@ -1,4 +1,3 @@
-DELETE FROM `creature_template` WHERE `Entry` = 60001;
 DELETE FROM `creature_template` WHERE `Entry` = 60002;
 DELETE FROM `creature_template` WHERE `Entry` = 799999;
 DELETE FROM `creature_template` WHERE `Entry` = 800000;

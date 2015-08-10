@@ -71,17 +71,33 @@ public:
 
 	struct lightAI : public ScriptedAI
 	{
-		lightAI(Creature* creature) : ScriptedAI(creature), Summons(me) { }
+		lightAI(Creature* creature) : ScriptedAI(creature), Summons(me) 	
+		
+		{
+
+		}
 
 		uint32 playerdie = 0;
+		
+		
 		void Reset() override
 		{
 			_events.Reset();
 			Summons.DespawnAll();
 		}
 
-
-
+	
+		
+		
+		void Lootchange(uint32 playerdie){
+			me->ResetLootMode();
+			if (playerdie == 0){
+				me->AddLootMode(LOOT_MODE_HARD_MODE_2);
+			}
+			else{
+				me->AddLootMode(LOOT_MODE_DEFAULT);
+			}
+		}
 
 		void AggroAllPlayers(Creature* temp)
 		{
@@ -144,6 +160,7 @@ public:
 				_events.ScheduleEvent(EVENT_BLIZZARD, 12000);
 				_events.ScheduleEvent(EVENT_ARKANE_AUFLADUNG, 10000);
 				_events.ScheduleEvent(EVENT_ENRAGE, 120000);
+				
 
 			}
 		}
@@ -165,10 +182,9 @@ public:
 		{
 			Talk(SAY_DEAD);
 			char msg[250];
-			snprintf(msg, 250, "|cffff0000[Boss System]|r Boss|cffff6060 Lightshadow|r wurde getoetet! Respawn in 4h 33min. Darkshadow ist nun der rechtmaessige Prinz!", pPlayer->GetName());
+			snprintf(msg, 250, "|cffff0000[Boss System]|r Boss|cffff6060 Lightshadow|r wurde getoetet! Respawn in 4h 33min. Darkshadow ist nun der rechtmaessige Prinz! %u",playerdie, pPlayer->GetName());
 			sWorld->SendGlobalText(msg, NULL);
 			Map::PlayerList const &PlList = pPlayer->GetMap()->GetPlayers();
-
 			if (PlList.isEmpty())
 				return;
 
@@ -185,7 +201,8 @@ public:
 					}
 				}
 			}
-			
+
+			me->SetLootMode(LOOT_MODE_HARD_MODE_DEFAULT);
 		}
 
 
@@ -194,15 +211,15 @@ public:
 			Talk(SAY_KILL);
 			if (victim->GetTypeId() != TYPEID_PLAYER)
 				return;
-			char msg[250];
-			snprintf(msg, 250, "|cffff0000[Boss System]|r |cffff6060 Lightshadow|r hat einen Mitstreiter Darkshadows getoetet! Was fuer eine Schmach!", victim->GetName());
-			sWorld->SendGlobalText(msg, NULL);
+			char msg[250];		
 			DoCast(me, SPELL_ERNEUERUNG);
 			DoCast(me, SPELL_ENRAGE);
 			DoCast(SPELL_SEUCHENSTROM);
 			DoCast(SPELL_SEUCHENBOMBE);
 			DoCast(SPELL_BLISTERING_COLD);
 			++playerdie;
+			snprintf(msg, 250, "|cffff0000[Boss System]|r |cffff6060 Lightshadow|r hat einen Mitstreiter Darkshadows getoetet! Was fuer eine Schmach! Killcounter steht bei: %u", playerdie, victim->GetName());
+			sWorld->SendGlobalText(msg, NULL);
 		}
 
 
