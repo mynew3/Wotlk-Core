@@ -28,10 +28,21 @@ public: dark() : CreatureScript("dark"){ }
 			{
 			case 0:
 			{	
+				
+				pPlayer->AddAura(48161, pPlayer);              // Power Word: Fortitude        
+				pPlayer->AddAura(48073, pPlayer);              // Divine Spirit
+				pPlayer->AddAura(20217, pPlayer);              // Blessing of Kings
+				pPlayer->AddAura(48469, pPlayer);              // Mark of the wild
+				pPlayer->AddAura(16609, pPlayer);              // Spirit of Zandalar
+				pPlayer->AddAura(15366, pPlayer);              // Songflower Serenade
+				pPlayer->AddAura(22888, pPlayer);              // Rallying Cry of the Dragonslayer
+				pPlayer->AddAura(57399, pPlayer);              // Well Fed
+				pPlayer->AddAura(17013, pPlayer);              // Agamaggan's Agility
+				pPlayer->AddAura(16612, pPlayer);              // Agamaggan's Strength
 				pCreature->SummonCreature(800062, -7139.58, -4317.59, 264.33, 3.13, TEMPSUMMON_TIMED_DESPAWN, 120000);
 				pPlayer->PlayerTalkClass->SendCloseGossip();
 				return true;
-				
+					
 			}
 
 			case 1:{

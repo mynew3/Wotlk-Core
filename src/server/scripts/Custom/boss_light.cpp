@@ -7,7 +7,7 @@
 enum Spells
 {
 	SPELL_ALPTRAUM = 50341,
-	SPELL_ENRAGE = 64487,
+	SPELL_ENRAGE = 68335,
 	SPELL_ARKANE_AUFLADUNG = 41349,
 	SPELL_FEUERBALL = 388369,
 	SPELL_BLITZENTLADUNG = 39028,
@@ -18,7 +18,9 @@ enum Spells
 	SPELL_DURCHDRINGENDE_KÄLTE = 66013,
 	SPELL_EISBLITZ = 31249,
 	SPELL_ERNEUERUNG = 66177,
-	SPELL_FINGER = 31984
+	SPELL_SEUCHENBOMBE = 61858,
+	SPELL_SEUCHENSTROM = 69871,
+	SPELL_BLISTERING_COLD = 71049
 
 };
 
@@ -36,7 +38,8 @@ enum Events
 	EVENT_DURCHDRINGENDE_KÄLTE = 10,
 	EVENT_EISBLITZ = 11,
 	EVENT_ERNEUERUNG = 12,
-	EVENT_FINGER = 13
+	EVENT_SEUCHENBOMBE = 13
+	
 };
 
 enum Phases
@@ -55,10 +58,10 @@ enum Texts
 {
 	SAY_AGGRO = 0,
 	SAY_RANDOM = 1,
-	SAY_HELP = 2,
-	SAY_BERSERK = 3,
-	SAY_ENRAGE = 4,
-	SAY_DEAD = 5
+	SAY_KILL = 2,
+	SAY_DEAD = 3,
+	SAY_BLIZZARD = 4
+	
 };
 
 class light : public CreatureScript
@@ -70,10 +73,40 @@ public:
 	{
 		lightAI(Creature* creature) : ScriptedAI(creature), Summons(me) { }
 
+		uint32 playerdie = 0;
 		void Reset() override
 		{
 			_events.Reset();
 			Summons.DespawnAll();
+		}
+
+
+
+
+		void AggroAllPlayers(Creature* temp)
+		{
+			Map::PlayerList const &PlList = temp->GetMap()->GetPlayers();
+
+			if (PlList.isEmpty())
+				return;
+
+			for (Map::PlayerList::const_iterator i = PlList.begin(); i != PlList.end(); ++i)
+			{
+				if (Player* player = i->GetSource())
+				{
+					if (player->IsGameMaster())
+						continue;
+
+					if (player->IsAlive())
+					{
+						temp->RemoveFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_NON_ATTACKABLE | UNIT_FLAG_IMMUNE_TO_PC);
+						temp->SetReactState(REACT_AGGRESSIVE);
+						temp->SetInCombatWith(player);
+						player->SetInCombatWith(temp);
+						temp->AddThreat(player, 0.0f);
+					}
+				}
+			}
 		}
 
 		void EnterCombat(Unit* /*who*/) override
@@ -84,7 +117,7 @@ public:
 			_events.ScheduleEvent(EVENT_ARKANE_AUFLADUNG, 10000);
 			_events.ScheduleEvent(EVENT_FEUERBALL, 25000);
 			_events.ScheduleEvent(EVENT_BLITZENTLADUNG, 12000);
-			_events.ScheduleEvent(EVENT_FINGER, 30000);
+			_events.ScheduleEvent(EVENT_SEUCHENBOMBE, 30000);
 
 		}
 
@@ -99,7 +132,7 @@ public:
 				_events.ScheduleEvent(EVENT_DEGENERATION, 10000);
 				_events.ScheduleEvent(EVENT_EISBLITZ, 25000);
 				_events.ScheduleEvent(EVENT_ERNEUERUNG, 20000);
-				_events.ScheduleEvent(EVENT_FINGER, 30000);
+				_events.ScheduleEvent(EVENT_SEUCHENBOMBE, 30000);
 
 			}
 
@@ -123,18 +156,54 @@ public:
 			{
 			case NPC_PUSTELIGER_SCHRECKEN:
 				if (Unit* target = SelectTarget(SELECT_TARGET_RANDOM, 0, 300.0f))
-					summon->AI()->AttackStart(target); // I think it means the Tank !
+					summon->AI()->AttackStart(target);
 				break;
 			}
 		}
 
 		void JustDied(Unit* pPlayer)
 		{
+			Talk(SAY_DEAD);
 			char msg[250];
-			snprintf(msg, 250, "|cffff0000[Boss System]|r Boss|cffff6060 Lightshadow|r wurde getoetet! Respawn in 4h 33min.", pPlayer->GetName());
+			snprintf(msg, 250, "|cffff0000[Boss System]|r Boss|cffff6060 Lightshadow|r wurde getoetet! Respawn in 4h 33min. Darkshadow ist nun der rechtmaessige Prinz!", pPlayer->GetName());
 			sWorld->SendGlobalText(msg, NULL);
+			Map::PlayerList const &PlList = pPlayer->GetMap()->GetPlayers();
+
+			if (PlList.isEmpty())
+				return;
+
+			for (Map::PlayerList::const_iterator i = PlList.begin(); i != PlList.end(); ++i)
+			{
+				if (Player* player = i->GetSource())
+				{
+					if (player->IsGameMaster())
+						continue;
+
+					if (player->IsAlive())
+					{
+						player->RemoveAllAuras();
+					}
+				}
+			}
+			
 		}
 
+
+		void KilledUnit(Unit* victim) override
+		{
+			Talk(SAY_KILL);
+			if (victim->GetTypeId() != TYPEID_PLAYER)
+				return;
+			char msg[250];
+			snprintf(msg, 250, "|cffff0000[Boss System]|r |cffff6060 Lightshadow|r hat einen Mitstreiter Darkshadows getoetet! Was fuer eine Schmach!", victim->GetName());
+			sWorld->SendGlobalText(msg, NULL);
+			DoCast(me, SPELL_ERNEUERUNG);
+			DoCast(me, SPELL_ENRAGE);
+			DoCast(SPELL_SEUCHENSTROM);
+			DoCast(SPELL_SEUCHENBOMBE);
+			DoCast(SPELL_BLISTERING_COLD);
+			++playerdie;
+		}
 
 
 		void UpdateAI(uint32 diff) override
@@ -156,21 +225,19 @@ public:
 					DoCastToAllHostilePlayers(SPELL_ENRAGE);
 					break;
 				case EVENT_ARKANE_AUFLADUNG:
-					Talk(SAY_RANDOM);
 					DoCastToAllHostilePlayers(SPELL_ARKANE_AUFLADUNG);
 					_events.ScheduleEvent(EVENT_BLIZZARD, 15000);
 					break;
 				case EVENT_FEUERBALL:
 					DoCastToAllHostilePlayers(SPELL_FEUERBALL);
-					_events.ScheduleEvent(EVENT_FINGER, 10000);
+					_events.ScheduleEvent(EVENT_SEUCHENBOMBE, 10000);
 					break;
 				case EVENT_BLITZENTLADUNG:
-					Talk(SAY_BERSERK);
 					DoCastToAllHostilePlayers(SPELL_BLITZENTLADUNG);
 					_events.ScheduleEvent(EVENT_BLITZENTLADUNG, 12000);
 					break;
 				case EVENT_BLIZZARD:
-					Talk(SAY_ENRAGE);
+					Talk(SAY_BLIZZARD);
 					DoCastToAllHostilePlayers(SPELL_BLIZZARD);
 					_events.ScheduleEvent(EVENT_ARKANE_AUFLADUNG, 25000);
 					break;
@@ -184,7 +251,7 @@ public:
 					break;
 				case EVENT_DEGENERATION:
 					DoCast(SPELL_DEGENERATION);
-					_events.ScheduleEvent(EVENT_DEGENERATION, 20000);
+					_events.ScheduleEvent(EVENT_DEGENERATION, 20000,1);
 					break;
 				case EVENT_DURCHDRINGENDE_KÄLTE:
 					DoCastToAllHostilePlayers(SPELL_DURCHDRINGENDE_KÄLTE);
@@ -198,14 +265,10 @@ public:
 					DoCast(me,SPELL_ERNEUERUNG);
 					_events.ScheduleEvent(EVENT_EISBLITZ, 25000);
 					break;
-				case EVENT_FINGER:
-					DoCast(me, SPELL_FINGER);
-					_events.ScheduleEvent(EVENT_FINGER, 25000);
+				case EVENT_SEUCHENBOMBE:
+					DoCast(me, SPELL_SEUCHENBOMBE);
+					_events.ScheduleEvent(EVENT_SEUCHENBOMBE, 25000);
 					break;
-
-
-
-
 				default:
 					break;
 				}
