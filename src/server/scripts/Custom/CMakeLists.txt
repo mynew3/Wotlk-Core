@@ -31,6 +31,8 @@ set(scripts_STAT_SRCS
   Custom/boss_exitares_schatten.cpp
   Custom/challenge.cpp
   Custom/dark.cpp
+  Custom/boss_light.cpp
+  Custom/light_hardmode.cpp
   ${scripts_STAT_SRCS}
 #  ${sources_Custom}
   Custom/Transmog/Transmogrification.h

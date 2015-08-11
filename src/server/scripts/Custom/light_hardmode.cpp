@@ -20,7 +20,10 @@ enum Spells
 	SPELL_ERNEUERUNG = 66177,
 	SPELL_SEUCHENBOMBE = 61858,
 	SPELL_SEUCHENSTROM = 69871,
-	SPELL_BLISTERING_COLD = 71049
+	SPELL_BLISTERING_COLD = 71049,
+	SPELL_TOXIC_WASTE = 69024,
+	SPELL_SPALTEN = 74367,
+	SPELL_ARMY_OF_DEAD = 67761
 
 };
 
@@ -29,7 +32,7 @@ enum Events
 	EVENT_ALPTRAUM = 1,
 	EVENT_ENRAGE = 2,
 	EVENT_ARKANE_AUFLADUNG = 3,
-	EVENT_FEUERBALL= 4,
+	EVENT_FEUERBALL = 4,
 	EVENT_BLITZENTLADUNG = 5,
 	EVENT_BLIZZARD = 6,
 	EVENT_BLUTGERUCH = 7,
@@ -38,8 +41,10 @@ enum Events
 	EVENT_DURCHDRINGENDE_KÄLTE = 10,
 	EVENT_EISBLITZ = 11,
 	EVENT_ERNEUERUNG = 12,
-	EVENT_SEUCHENBOMBE = 13
-	
+	EVENT_SEUCHENBOMBE = 13,
+	EVENT_TOXIC_WASTE = 14,
+	EVENT_SPALTEN = 15,
+	EVENT_ARMY_OF_DEAD = 16
 };
 
 enum Phases
@@ -61,34 +66,34 @@ enum Texts
 	SAY_KILL = 2,
 	SAY_DEAD = 3,
 	SAY_BLIZZARD = 4
-	
+
 };
 
-class light : public CreatureScript
+class lighthardmode : public CreatureScript
 {
 public:
-	light() : CreatureScript("light") { }
+	lighthardmode() : CreatureScript("lighthardmode") { }
 
-	struct lightAI : public ScriptedAI
+	struct lighthardmodeAI : public ScriptedAI
 	{
-		lightAI(Creature* creature) : ScriptedAI(creature), Summons(me) 	
-		
+		lighthardmodeAI(Creature* creature) : ScriptedAI(creature), Summons(me)
+
 		{
 
 		}
 
 		uint32 playerdie = 0;
-		
-		
+
+
 		void Reset() override
 		{
 			_events.Reset();
 			Summons.DespawnAll();
 		}
 
-	
-		
-		
+
+
+
 		void Lootchange(uint32 playerdie){
 			me->ResetLootMode();
 			if (playerdie == 0){
@@ -134,6 +139,8 @@ public:
 			_events.ScheduleEvent(EVENT_FEUERBALL, 25000);
 			_events.ScheduleEvent(EVENT_BLITZENTLADUNG, 12000);
 			_events.ScheduleEvent(EVENT_SEUCHENBOMBE, 30000);
+			_events.ScheduleEvent(EVENT_TOXIC_WASTE, 15000);
+			_events.ScheduleEvent(EVENT_SPALTEN, 10000);
 
 		}
 
@@ -149,7 +156,8 @@ public:
 				_events.ScheduleEvent(EVENT_EISBLITZ, 25000);
 				_events.ScheduleEvent(EVENT_ERNEUERUNG, 20000);
 				_events.ScheduleEvent(EVENT_SEUCHENBOMBE, 30000);
-
+				_events.ScheduleEvent(EVENT_TOXIC_WASTE, 15000);
+				_events.ScheduleEvent(EVENT_SPALTEN, 10000);
 			}
 
 			if (me->HealthBelowPctDamaged(35, damage) && _events.IsInPhase(PHASE_TWO))
@@ -160,8 +168,8 @@ public:
 				_events.ScheduleEvent(EVENT_BLIZZARD, 12000);
 				_events.ScheduleEvent(EVENT_ARKANE_AUFLADUNG, 10000);
 				_events.ScheduleEvent(EVENT_ENRAGE, 120000);
-				
-
+				_events.ScheduleEvent(EVENT_TOXIC_WASTE, 15000);
+				_events.ScheduleEvent(EVENT_SPALTEN, 10000);
 			}
 		}
 
@@ -182,7 +190,7 @@ public:
 		{
 			Talk(SAY_DEAD);
 			char msg[250];
-			snprintf(msg, 250, "|cffff0000[Boss System]|r Boss|cffff6060 Lightshadow|r wurde getoetet! Respawn in 4h 33min. Darkshadow ist nun der rechtmaessige Prinz! %u",playerdie, pPlayer->GetName());
+			snprintf(msg, 250, "|cffff0000[Boss System]|r Boss|cffff6060 Lightshadow|r wurde getoetet! Respawn in 4h 33min. Darkshadow ist nun der rechtmaessige Prinz! %u", playerdie, pPlayer->GetName());
 			sWorld->SendGlobalText(msg, NULL);
 			Map::PlayerList const &PlList = pPlayer->GetMap()->GetPlayers();
 			if (PlList.isEmpty())
@@ -211,12 +219,13 @@ public:
 			Talk(SAY_KILL);
 			if (victim->GetTypeId() != TYPEID_PLAYER)
 				return;
-			char msg[250];		
+			char msg[250];
 			DoCast(me, SPELL_ERNEUERUNG);
 			DoCast(me, SPELL_ENRAGE);
 			DoCast(SPELL_SEUCHENSTROM);
 			DoCast(SPELL_SEUCHENBOMBE);
 			DoCast(SPELL_BLISTERING_COLD);
+			DoCast(SPELL_ARMY_OF_DEAD);
 			++playerdie;
 			snprintf(msg, 250, "|cffff0000[Boss System]|r |cffff6060 Lightshadow|r hat einen Mitstreiter Darkshadows getoetet! Was fuer eine Schmach! Killcounter steht bei: %u", playerdie, victim->GetName());
 			sWorld->SendGlobalText(msg, NULL);
@@ -268,7 +277,7 @@ public:
 					break;
 				case EVENT_DEGENERATION:
 					DoCast(SPELL_DEGENERATION);
-					_events.ScheduleEvent(EVENT_DEGENERATION, 20000,1);
+					_events.ScheduleEvent(EVENT_DEGENERATION, 20000, 1);
 					break;
 				case EVENT_DURCHDRINGENDE_KÄLTE:
 					DoCastToAllHostilePlayers(SPELL_DURCHDRINGENDE_KÄLTE);
@@ -279,12 +288,23 @@ public:
 					_events.ScheduleEvent(EVENT_ERNEUERUNG, 25000);
 					break;
 				case EVENT_ERNEUERUNG:
-					DoCast(me,SPELL_ERNEUERUNG);
+					DoCast(me, SPELL_ERNEUERUNG);
 					_events.ScheduleEvent(EVENT_EISBLITZ, 25000);
 					break;
 				case EVENT_SEUCHENBOMBE:
 					DoCast(me, SPELL_SEUCHENBOMBE);
 					_events.ScheduleEvent(EVENT_SEUCHENBOMBE, 25000);
+					break;
+				case EVENT_TOXIC_WASTE:
+					DoCastToAllHostilePlayers(SPELL_TOXIC_WASTE);
+					_events.ScheduleEvent(EVENT_TOXIC_WASTE, 15000);
+					break;
+				case EVENT_SPALTEN:
+					DoCastVictim(SPELL_SPALTEN);
+					_events.ScheduleEvent(EVENT_SPALTEN, 10000);
+					break;
+				case EVENT_ARMY_OF_DEAD:
+					DoCast(SPELL_ARMY_OF_DEAD);
 					break;
 				default:
 					break;
@@ -301,14 +321,14 @@ public:
 
 	CreatureAI* GetAI(Creature* creature) const override
 	{
-		return new lightAI(creature);
+		return new lighthardmodeAI(creature);
 	}
 
 
 
 };
 
-void AddSC_light()
+void AddSC_lighthardmode()
 {
-	new light();
+	new lighthardmode();
 }

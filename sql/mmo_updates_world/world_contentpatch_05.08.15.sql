@@ -201,7 +201,7 @@ VALUES ( /*  ID */ 800035,
   /*  Racial Leader  */0,
   /*  movement id  */ 0, 
   /*  RegenHealth`` */1, 
-  /*  mechanic_immune_mask` */617299839, 
+  /*  mechanic_immune_mask` */642465663, 
   /*  flags_extra` */0, 
   /*  Scriptname  */'');
 
