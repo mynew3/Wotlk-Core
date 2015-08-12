@@ -25,7 +25,6 @@ set(scripts_STAT_SRCS
   Custom/Allianzboss.cpp
   Custom/hordeboss.cpp
   Custom/supportnpc.cpp
-  Custom/teleportitem.cpp
   Custom/boss_orrig.cpp
   Custom/boss_tolreos.cpp
   Custom/boss_exitares_schatten.cpp
