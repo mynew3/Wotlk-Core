@@ -23,7 +23,7 @@ set(scripts_STAT_SRCS
   Custom/boss_anna.cpp
   Custom/racechange.cpp
   Custom/Allianzboss.cpp
-  Custom/Hordeboss.cpp
+  Custom/hordeboss.cpp
   Custom/supportnpc.cpp
   Custom/teleportitem.cpp
   Custom/boss_orrig.cpp
