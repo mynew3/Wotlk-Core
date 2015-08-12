@@ -47,9 +47,9 @@ public:
 		}
 		void JustDied(Unit* pPlayer)
 		{
-			char msg[250];
+			/*char msg[250];
 			snprintf(msg, 250, "|cffff0000[Event System]|r Die|cffff6060 Horde|r hat das Event gewonnen! ", pPlayer->GetName());
-			sWorld->SendGlobalText(msg, NULL);
+			sWorld->SendGlobalText(msg, NULL);*/
 		}
 		void UpdateAI(const uint32 uiDiff)
 		{
