@@ -121,9 +121,9 @@ public:
 
 		void JustDied(Unit* pPlayer)
 		{
-			/*char msg[250];
-			snprintf(msg, 250, "|cffff0000[Boss System]|r Boss|cffff6060 Tyranium|r wurde getoetet! Respawn in 4h 30min.", pPlayer->GetName());
-			sWorld->SendGlobalText(msg, NULL);*/
+			char msg[250];
+			snprintf(msg, 250, "|cffff0000[Boss System]|r Boss|cffff6060 Tyranium|r wurde getoetet! Respawn in 4h 30min.");
+			sWorld->SendGlobalText(msg, NULL);
 		}
 
 		void UpdateAI(uint32 diff) override
