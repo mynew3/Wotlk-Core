@@ -181,9 +181,9 @@ public:
 		void JustDied(Unit* pPlayer)
 		{
 			Talk(SAY_DEAD);
-			char msg[250];
+			/*char msg[250];
 			snprintf(msg, 250, "|cffff0000[Boss System]|r Boss|cffff6060 Lightshadow|r wurde getoetet! Respawn in 4h 33min. Darkshadow ist nun der rechtmaessige Prinz! %u",playerdie, pPlayer->GetName());
-			sWorld->SendGlobalText(msg, NULL);
+			sWorld->SendGlobalText(msg, NULL);*/
 			Map::PlayerList const &PlList = pPlayer->GetMap()->GetPlayers();
 			if (PlList.isEmpty())
 				return;
