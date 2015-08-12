@@ -45,7 +45,7 @@ public:
 		{
 			percentPassed = 1;
 		}
-		void JustDied(Unit* pPlayer)
+		void JustDied(Unit* )
 		{
 			char msg[250];
 			snprintf(msg, 250, "|cffff0000[Event System]|r Die |cff00ccff Allianz|r hat das Event gewonnen!");  
