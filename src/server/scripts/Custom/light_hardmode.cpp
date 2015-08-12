@@ -228,8 +228,8 @@ public:
 			DoCast(SPELL_BLISTERING_COLD);
 			DoCast(SPELL_ARMY_OF_DEAD);
 			++playerdie;
-			/*snprintf(msg, 250, "|cffff0000[Boss System]|r |cffff6060 Lightshadow|r hat einen Mitstreiter Darkshadows getoetet! Was fuer eine Schmach! Killcounter steht bei: %u", playerdie, victim->GetName());
-			sWorld->SendGlobalText(msg, NULL);*/
+			snprintf(msg, 250, "|cffff0000[Boss System]|r |cffff6060 Lightshadow|r hat einen Mitstreiter Darkshadows getoetet! Was fuer eine Schmach! Killcounter steht bei: %u", playerdie);
+			sWorld->SendGlobalText(msg, NULL);
 		}
 
 
