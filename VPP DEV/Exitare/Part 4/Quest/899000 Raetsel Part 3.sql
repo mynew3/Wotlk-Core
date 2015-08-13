@@ -73,7 +73,7 @@ REPLACE INTO `quest_template` (`ID`, `Method`, `QuestLevel`, `MinLevel`, `QuestS
  /*  PointOption  */ 0,
  /*  LogTitle  */ 'Das dritte Rätsel',
  /*  LogDescription  */  'Löst das Rätsel.',
- /*  QuestDescription   */ '$N,hier euer drittes Rätsel. ',
+ /*  QuestDescription   */ '$N,hier euer drittes Rätsel. Ihr müsst Lightshadow in einem bestimmten Modus töten, sowie bestimmte Faktoren erreichen. Viel Erfolg beim Erfolg des Rätsels. ',
  /*  EndText   */  '',
  /*  OfferRewardText  */  '',
  /*  RequestItemsText  */ 'Löst das Rätsel.',
