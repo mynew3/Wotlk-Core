@@ -187,8 +187,15 @@ public:
 			}
 		}
 
+		void Questcomplete(){
+			Player* pPlayer;
+			pPlayer->SendQuestComplete(899000);
+		}
+
 		void JustDied(Unit* pPlayer)
 		{
+
+			
 			Talk(SAY_DEAD);
 			char msg[250];
 			snprintf(msg, 250, "|cffff0000[Boss System]|r Boss|cffff6060 Lightshadow|r wurde getoetet! Respawn in 4h 33min. Darkshadow ist nun der rechtmaessige Prinz! %u", playerdie);
@@ -207,11 +214,14 @@ public:
 					if (player->IsAlive())
 					{
 						player->RemoveAllAuras();
+						if (player->hasQuest(899000)){
+							Questcomplete();
+						}
+					
 					}
 				}
 			}
 
-			me->SetLootMode(LOOT_MODE_DEFAULT);
 		}
 
 
