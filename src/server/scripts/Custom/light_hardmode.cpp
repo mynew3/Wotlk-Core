@@ -215,8 +215,11 @@ public:
 					if (player->IsAlive())
 					{
 						player->RemoveAllAuras();
-						if (player->hasQuest(899000)){
+						if (player->hasQuest(899000) && playerdie == 0){
 							Questcomplete();
+						}
+						else {
+							player->SendQuestFailed(899000,EQUIP_ERR_OK);
 						}
 					
 					}
