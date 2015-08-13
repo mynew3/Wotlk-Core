@@ -160,7 +160,7 @@ public:
 					break;
 				case EVENT_DOMINATE_MIND:
 					Talk(SAY_BERSERK);
-					DoCast(me, SPELL_DOMINATE_MIND);
+					DoCastVictim(SPELL_DOMINATE_MIND);
 					_events.ScheduleEvent(EVENT_DOMINATE_MIND, 25000);
 					break;
 				case EVENT_EARTH:

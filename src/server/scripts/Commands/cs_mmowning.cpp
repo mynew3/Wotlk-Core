@@ -54,7 +54,7 @@ public:
 			//GuildHouse Tele
 			{ "gh",             SEC_PLAYER,      	false, &HandleGHCommand,				"", NULL },	
 			//Insel Tele
-			{"insel",			SEC_PLAYER,			false, &HandleInselCommand,				"", NULL },					
+			{"quest",			SEC_PLAYER,			false, &HandleQuestCommand,				"", NULL },					
 			//{ "tcrecon",        SEC_MODERATOR,      false, &HandleIRCRelogCommand,            "", NULL },	
 			{ NULL,             0,                  false,  NULL,                            "", NULL }
         };
@@ -299,33 +299,29 @@ static bool HandleGHCommand(ChatHandler* handler, const char* args)
         return true;
 }
 
-/*Insel*/
-static bool HandleInselCommand(ChatHandler* handler, const char* /*args*/)
+/*Quest*/
+static bool HandleQuestCompleterCompHelper(Player* player, uint32 entry, ChatHandler* handler)
 {
 	
+		// actual code for completing
+		Quest const* quest = sObjectMgr->GetQuestTemplate(entry);
 
-	Player *chr = handler->GetSession()->GetPlayer();
-
-	if (chr->IsInCombat())
-	{
-		handler->PSendSysMessage(LANG_YOU_IN_COMBAT);
-		//SetSentErrorMessage(true);
-		return false;
-	}
+		//If player doesnt have the quest
+		if (!quest || player->GetQuestRewardStatus(entry) == false)
+		{
+			handler->PSendSysMessage("Du hast die Quest noch nicht abgeschlossen.");
+			handler->SetSentErrorMessage(true);
+			return false;
+		}
+		else{
+			handler->PSendSysMessage("Du hast die Quest schon abgeschlossen.");
+			handler->SetSentErrorMessage(true);
+			return false;
+		}
+		return true;
 	
-	if (chr->IsInFlight())
-	{
-		handler->PSendSysMessage(LANG_YOU_IN_FLIGHT);
-		//SetSentErrorMessage(true);
-		return false;
-	}
-
-	chr->ResurrectPlayer(0.5, false);
-
-	chr->TeleportTo(0, -9771.67, 2127.04, 15.07, 3.75);    // Insel Coords
-
-	return true;
 }
+
 
 
 };
