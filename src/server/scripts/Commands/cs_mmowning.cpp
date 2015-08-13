@@ -52,9 +52,7 @@ public:
 			//Buffer
 			{ "buffs",			SEC_PLAYER,			false, &HandleBuffsCommand,				"", NULL }, 
 			//GuildHouse Tele
-			{ "gh",             SEC_PLAYER,      	false, &HandleGHCommand,				"", NULL },	
-			//Insel Tele
-			{"quest",			SEC_PLAYER,			false, &HandleQuestCommand,				"", NULL },					
+			{ "gh",             SEC_PLAYER,      	false, &HandleGHCommand,				"", NULL },		
 			//{ "tcrecon",        SEC_MODERATOR,      false, &HandleIRCRelogCommand,            "", NULL },	
 			{ NULL,             0,                  false,  NULL,                            "", NULL }
         };
@@ -299,28 +297,6 @@ static bool HandleGHCommand(ChatHandler* handler, const char* args)
         return true;
 }
 
-/*Quest*/
-static bool HandleQuestCompleterCompHelper(Player* player, uint32 entry, ChatHandler* handler)
-{
-	
-		// actual code for completing
-		Quest const* quest = sObjectMgr->GetQuestTemplate(entry);
-
-		//If player doesnt have the quest
-		if (!quest || player->GetQuestRewardStatus(entry) == false)
-		{
-			handler->PSendSysMessage("Du hast die Quest noch nicht abgeschlossen.");
-			handler->SetSentErrorMessage(true);
-			return false;
-		}
-		else{
-			handler->PSendSysMessage("Du hast die Quest schon abgeschlossen.");
-			handler->SetSentErrorMessage(true);
-			return false;
-		}
-		return true;
-	
-}
 
 
 
