@@ -40,7 +40,6 @@ public: dark() : CreatureScript("dark"){ }
 					pPlayer->AddAura(57399, pPlayer);              // Well Fed
 					pPlayer->AddAura(17013, pPlayer);              // Agamaggan's Agility
 					pPlayer->AddAura(16612, pPlayer);              // Agamaggan's Strength
-					pCreature->SummonCreature(800062, -7139.58, -4317.59, 264.33, 3.13, TEMPSUMMON_TIMED_DESPAWN, 120000);
 					pPlayer->PlayerTalkClass->SendCloseGossip();
 					return true;
 				}
@@ -55,7 +54,7 @@ public: dark() : CreatureScript("dark"){ }
 			case 1:{
 					
 					pPlayer->TeleportTo(0, -7138.54, -4310.35, 264.33, 3.13);
-					pCreature->SummonCreature(800064, -7138.54, -4310.35, 264.33, 3.13, TEMPSUMMON_CORPSE_TIMED_DESPAWN, 120000);
+					pCreature->SummonCreature(800064, -7139.58, -4317.59, 264.33, 3.13, TEMPSUMMON_TIMED_DESPAWN, 120000);
 					return true;
 			}break;
 
@@ -65,7 +64,7 @@ public: dark() : CreatureScript("dark"){ }
 			case 3:
 			{
 				pPlayer->GetGUID();
-				ChatHandler(pPlayer->GetSession()).PSendSysMessage("[Boss System]\nOk, das ist Eure Sache ob ihr mich haengen lasst!",
+				ChatHandler(pPlayer->GetSession()).PSendSysMessage("[Boss System]\nOk, das ist Eure Sache ob ihr mich im Stich lasst!",
 					pPlayer->GetName());
 				pPlayer->PlayerTalkClass->SendCloseGossip();
 				return true;

@@ -27465,7 +27465,7 @@ UPDATE `creature_template` SET `HealthModifier`=550, `ArmorModifier`=200, `Damag
 
 DELETE FROM `creature` WHERE `guid` = 800058;
 REPLACE INTO `creature` (`guid`,`id`,`map`,`spawnMask`,`phaseMask`,`modelid`,`equipment_id`,`position_x`,`position_y`,`position_z`,`orientation`,`spawntimesecs`,`spawndist`,`currentwaypoint`,`curhealth`,`curmana`,`MovementType`) VALUES 
-('800058','800058','530','1','1','9391','0','-856.30','1583.93','448.26','5.48','14400','0','0','1000000','250000','0');
+('800058','800058','530','1','1','9391','0','-1256.55','1513.76','45.70','4.76','14400','0','0','1000000','250000','0');
 
 
 

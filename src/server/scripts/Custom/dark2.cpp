@@ -29,7 +29,7 @@ public: dark2() : CreatureScript("dark2"){ }
 			{
 				if (pPlayer->HasItemCount(700518, 4)){
 					pPlayer->DestroyItemCount(700518, 4, true);
-					pCreature->SummonCreature(800061, -7193.60, -4314.26, 264.06, 6.22, TEMPSUMMON_CORPSE_TIMED_DESPAWN, 120000);
+					pCreature->SummonCreature(800061, -7193.60, -4314.26, 264.06, 6.22, TEMPSUMMON_TIMED_OR_CORPSE_DESPAWN, 120000);
 					pPlayer->PlayerTalkClass->SendCloseGossip();
 				}
 
@@ -43,7 +43,7 @@ public: dark2() : CreatureScript("dark2"){ }
 			case 1:
 			{
 				if (pPlayer->HasItemCount(700518, 8)){
-					pCreature->SummonCreature(800063, -7193.60, -4314.26, 264.06, 6.22, TEMPSUMMON_CORPSE_TIMED_DESPAWN, 120000);
+					pCreature->SummonCreature(800063, -7193.60, -4314.26, 264.06, 6.22, TEMPSUMMON_TIMED_OR_CORPSE_DESPAWN, 120000);
 					pPlayer->DestroyItemCount(700518, 4, true);
 					pPlayer->PlayerTalkClass->SendCloseGossip();
 					pPlayer->GetGUID();
