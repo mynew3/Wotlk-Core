@@ -1,2 +1,3 @@
 MMOwning Dev Files are insert here.
-ALL Copyright goes to Exitare.
+All Copyright goes to VisionProgrammingProject.
+Publishing without owners ok is strictly forbidden!!
