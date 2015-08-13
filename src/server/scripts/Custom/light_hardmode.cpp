@@ -189,6 +189,7 @@ public:
 
 		void Questcomplete(){
 			Player* pPlayer;
+			pPlayer->GetGUID();
 			pPlayer->SendQuestComplete(899000);
 		}
 
