@@ -28,8 +28,8 @@ public: dark() : CreatureScript("dark"){ }
 			{
 			case 0:
 			{	
-				if (pPlayer->HasItemCount(35507, 4)){
-					pPlayer->DestroyItemCount(35507, 4, true);
+				if (pPlayer->HasItemCount(700518, 4)){
+					pPlayer->DestroyItemCount(700518, 4, true);
 					pPlayer->AddAura(48161, pPlayer);              // Power Word: Fortitude        
 					pPlayer->AddAura(48073, pPlayer);              // Divine Spirit
 					pPlayer->AddAura(20217, pPlayer);              // Blessing of Kings
@@ -43,6 +43,12 @@ public: dark() : CreatureScript("dark"){ }
 					pCreature->SummonCreature(800062, -7139.58, -4317.59, 264.33, 3.13, TEMPSUMMON_TIMED_DESPAWN, 120000);
 					pPlayer->PlayerTalkClass->SendCloseGossip();
 					return true;
+				}
+
+				else {
+					pPlayer->GetSession()->SendAreaTriggerMessage("Leider hast du nicht genug Abzeichen um meine Hilfe anzufordern.");
+					return true;
+					pPlayer->PlayerTalkClass->SendCloseGossip();
 				}
 			}break;
 
