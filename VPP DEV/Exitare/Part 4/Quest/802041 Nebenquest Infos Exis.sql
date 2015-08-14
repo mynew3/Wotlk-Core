@@ -1,7 +1,7 @@
 DELETE FROM `quest_template` WHERE  `id` = 802041;
 DELETE FROM `quest_template_addon` WHERE `id` = 802041;
-DELETE FROM `creature_questender` WHERE `id` = 27990   AND `quest` = 802041;
-DELETE FROM `creature_queststarter` WHERE `id` = 28716   AND `quest` = 802041;
+DELETE FROM `creature_questender` WHERE `id` = 800015   AND `quest` = 802041;
+DELETE FROM `creature_queststarter` WHERE `id` = 27990   AND `quest` = 802041;
 
 
 
@@ -22,8 +22,8 @@ REPLACE INTO `quest_template` (`ID`, `Method`, `QuestLevel`, `MinLevel`, `QuestS
  /*  RequiredFactionValue2   */ 0,
  /*  NextQuestIdChain  */ 0,
  /*  RewardXPId   */70,
- /*  RewardOrRequiredMoney  */ 0,
- /*  RewardMoneyMaxLevel  */ 0,
+ /*  RewardOrRequiredMoney  */ 500000,
+ /*  RewardMoneyMaxLevel  */ 500000,
  /*  RewardSpell   */ 0,
  /*  RewardSpellCast  */ 0,
  /*  RewardHonor  */ 0,
@@ -34,8 +34,8 @@ REPLACE INTO `quest_template` (`ID`, `Method`, `QuestLevel`, `MinLevel`, `QuestS
  /*  RequiredPlayerKills  */ 0,
  /*  RewardTalents  */ 0,
  /*  RewardArenaPoints  */ 0,
- /*  RewardIten    */ 700517,
- /*  RewardItem2   */ 27511,
+ /*  RewardIten    */ 49343,
+ /*  RewardItem2   */ 0,
  /*  RewardItem3   */ 0,
  /*  RewardItem4   */ 0,
  /*  RewardAmount1 */ 0,
@@ -43,7 +43,7 @@ REPLACE INTO `quest_template` (`ID`, `Method`, `QuestLevel`, `MinLevel`, `QuestS
  /*  RewardAmount3 */ 0,
  /*  RewardAmount4 */ 0,
  /*  RewardChoiceItemID1  */ 1,
- /*  RewardChoiceItemID2  */ 1,
+ /*  RewardChoiceItemID2  */ 0,
  /*  RewardChoiceItemID3  */ 0,
  /*  RewardChoiceItemID4  */ 0,
  /*  RewardChoiceItemID5  */ 0,
@@ -97,13 +97,13 @@ REPLACE INTO `quest_template` (`ID`, `Method`, `QuestLevel`, `MinLevel`, `QuestS
  /*  RequiredSourceItemCount3  */ 0,
  /*  RequiredSourceItemCount4  */ 0,
  /*  RequiredItemId1  */ 700517,
- /*  RequiredItemId2  */ 27511,
+ /*  RequiredItemId2  */ 0,
  /*  RequiredItemId3  */ 0,
  /*  RequiredItemId4  */ 0,
  /*  RequiredItemId5  */ 0,
  /*  RequiredItemId6  */ 0,
  /*  RequiredItemCount1  */ 1,
- /*  RequiredItemCount2  */ 1,
+ /*  RequiredItemCount2  */ 0,
  /*  RequiredItemCount3  */ 0,
  /*  RequiredItemCount4  */ 0,
  /*  RequiredItemCount5  */ 0,
@@ -156,7 +156,7 @@ REPLACE INTO `quest_template_addon` (`ID`, `MaxLevel`, `AllowableClasses`, `Sour
 
 
 REPLACE INTO `creature_questender` (`id`, `quest`) VALUES
-(27990, 802041);
+(800015, 802041);
 
 REPLACE INTO `creature_queststarter` (`id`, `quest`) VALUES
-(28716, 802041);
+(27990, 802041);
