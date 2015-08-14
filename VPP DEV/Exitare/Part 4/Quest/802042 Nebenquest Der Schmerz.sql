@@ -1,13 +1,13 @@
-DELETE FROM `quest_template` WHERE  `id` = 802039;
-DELETE FROM `quest_template_addon` WHERE `id` = 802039;
-DELETE FROM `creature_questender` WHERE `id` = 28716   AND `quest` = 802039;
-DELETE FROM `creature_queststarter` WHERE `id` = 27990   AND `quest` = 802039;
+DELETE FROM `quest_template` WHERE  `id` = 802042;
+DELETE FROM `quest_template_addon` WHERE `id` = 802042;
+DELETE FROM `creature_questender` WHERE `id` = 800015   AND `quest` = 802042;
+DELETE FROM `creature_queststarter` WHERE `id` = 800015   AND `quest` = 802042;
 
 
-UPDATE `creature_template` SET `npcflag`='4226' WHERE `entry`='28716';
+
 
 REPLACE INTO `quest_template` (`ID`, `Method`, `QuestLevel`, `MinLevel`, `QuestSortID`, `QuestType`, `SuggestedGroupNum`, `LimitTime`, `RequiredRaces`, `RequiredFactionId1`, `RequiredFactionId2`, `RequiredFactionValue1`, `RequiredFactionValue2`, `NextQuestIdChain`, `RewardXPId`, `RewardOrRequiredMoney`, `RewardMoneyMaxLevel`, `RewardSpell`, `RewardSpellCast`, `RewardHonor`, `RewardHonorMultiplier`, `SourceItemId`, `Flags`, `RewardTitle`, `RequiredPlayerKills`, `RewardTalents`, `RewardArenaPoints`, `RewardItem1`, `RewardItem2`, `RewardItem3`, `RewardItem4`, `RewardAmount1`, `RewardAmount2`, `RewardAmount3`, `RewardAmount4`, `RewardChoiceItemID1`, `RewardChoiceItemID2`, `RewardChoiceItemID3`, `RewardChoiceItemID4`, `RewardChoiceItemID5`, `RewardChoiceItemID6`, `RewardChoiceItemQuantity1`, `RewardChoiceItemQuantity2`, `RewardChoiceItemQuantity3`, `RewardChoiceItemQuantity4`, `RewardChoiceItemQuantity5`, `RewardChoiceItemQuantity6`, `RewardFactionID1`, `RewardFactionID2`, `RewardFactionID3`, `RewardFactionID4`, `RewardFactionID5`, `RewardFactionValue1`, `RewardFactionValue2`, `RewardFactionValue3`, `RewardFactionValue4`, `RewardFactionValue5`, `RewardFactionOverride1`, `RewardFactionOverride2`, `RewardFactionOverride3`, `RewardFactionOverride4`, `RewardFactionOverride5`, `PointMapId`, `PointX`, `PointY`, `PointOption`, `LogTitle`, `LogDescription`, `QuestDescription`, `EndText`, `OfferRewardText`, `RequestItemsText`, `QuestCompletionLog`, `RequiredNpcOrGo1`, `RequiredNpcOrGo2`, `RequiredNpcOrGo3`, `RequiredNpcOrGo4`, `RequiredNpcOrGoCount1`, `RequiredNpcOrGoCount2`, `RequiredNpcOrGoCount3`, `RequiredNpcOrGoCount4`, `RequiredSourceItemId1`, `RequiredSourceItemId2`, `RequiredSourceItemId3`, `RequiredSourceItemId4`, `RequiredSourceItemCount1`, `RequiredSourceItemCount2`, `RequiredSourceItemCount3`, `RequiredSourceItemCount4`, `RequiredItemId1`, `RequiredItemId2`, `RequiredItemId3`, `RequiredItemId4`, `RequiredItemId5`, `RequiredItemId6`, `RequiredItemCount1`, `RequiredItemCount2`, `RequiredItemCount3`, `RequiredItemCount4`, `RequiredItemCount5`, `RequiredItemCount6`, `Unknown0`, `ObjectiveText1`, `ObjectiveText2`, `ObjectiveText3`, `ObjectiveText4`, `DetailsEmote1`, `DetailsEmote2`, `DetailsEmote3`, `DetailsEmote4`, `DetailsEmoteDelay1`, `DetailsEmoteDelay2`, `DetailsEmoteDelay3`, `DetailsEmoteDelay4`, `EmoteOnIncomplete`, `EmoteOnComplete`, `OfferRewardEmote1`, `OfferRewardEmote2`, `OfferRewardEmote3`, `OfferRewardEmote4`, `OfferRewardEmoteDelay1`, `OfferRewardEmoteDelay2`, `OfferRewardEmoteDelay3`, `OfferRewardEmoteDelay4`, `VerifiedBuild`) VALUES
-(/*  ID    */802039,
+(/*  ID    */802042,
  /*  Method  */ 2,
  /*  QuestLevel  */ 80,
  /*  MinLevel   */80,
@@ -22,8 +22,8 @@ REPLACE INTO `quest_template` (`ID`, `Method`, `QuestLevel`, `MinLevel`, `QuestS
  /*  RequiredFactionValue2   */ 0,
  /*  NextQuestIdChain  */ 0,
  /*  RewardXPId   */70,
- /*  RewardOrRequiredMoney  */ 500000,
- /*  RewardMoneyMaxLevel  */ 500000,
+ /*  RewardOrRequiredMoney  */ 200000,
+ /*  RewardMoneyMaxLevel  */ 200000,
  /*  RewardSpell   */ 0,
  /*  RewardSpellCast  */ 0,
  /*  RewardHonor  */ 0,
@@ -34,7 +34,7 @@ REPLACE INTO `quest_template` (`ID`, `Method`, `QuestLevel`, `MinLevel`, `QuestS
  /*  RequiredPlayerKills  */ 0,
  /*  RewardTalents  */ 0,
  /*  RewardArenaPoints  */ 0,
- /*  RewardIten    */ 27511,
+ /*  RewardIten    */ 0,
  /*  RewardItem2   */ 0,
  /*  RewardItem3   */ 0,
  /*  RewardItem4   */ 0,
@@ -42,7 +42,7 @@ REPLACE INTO `quest_template` (`ID`, `Method`, `QuestLevel`, `MinLevel`, `QuestS
  /*  RewardAmount2 */ 0,
  /*  RewardAmount3 */ 0,
  /*  RewardAmount4 */ 0,
- /*  RewardChoiceItemID1  */ 1,
+ /*  RewardChoiceItemID1  */ 0,
  /*  RewardChoiceItemID2  */ 0,
  /*  RewardChoiceItemID3  */ 0,
  /*  RewardChoiceItemID4  */ 0,
@@ -73,12 +73,12 @@ REPLACE INTO `quest_template` (`ID`, `Method`, `QuestLevel`, `MinLevel`, `QuestS
  /*  PointX  */ 0,
  /*  PointY  */ 0,
  /*  PointOption  */ 0,
- /*  LogTitle  */ 'Neue Informationen',
- /*  LogDescription  */  'Schaut Euch die neuen Informationen im Questlog an.',
- /*  QuestDescription   */ 'Hallo $N, hier ist der aktuelle und neueste Stand. Wir haben den ersten Aufenhaltspunkt gefunden und haben den Angänger wieder zusammengesetzt. Wir haben Klingenspuren an dem Anhänger gefunden, die wir leider noch nicht richtig zuordnen können. Die Indizien verdichten sich aber in eine bestimmte Richtung. Dazu möchte ich aber nicht zu viel sagen. Wir sollten Anhänger zu einem Schmied bringen, um die Spuren zu überprüfen.',
+ /*  LogTitle  */ 'Der Schmerz',
+ /*  LogDescription  */  'Bringt Exitare die Taschentücher.',
+ /*  QuestDescription   */ 'Ich brauche Taschentücher von Euch. Geht sofort. Ich kann die Trauer kaum verkraften, obwohl wir immer noch nicht genau wissen was eigentlich passiert ist. Bringt mir diese Taschentücher. ',
  /*  EndText   */  '',
  /*  OfferRewardText  */  'Seid ihr fertig?',
- /*  RequestItemsText  */ 'Schaut Euch die neuen Informationen im Questlog an.',
+ /*  RequestItemsText  */ 'Bringt Exitare die Taschentücher.',
  /*  QuestCompletionLog  */ 'Es ist Eure Sache was ihr tut.',
  /*  RequiredNpcOrGo1  */ 0,
  /*  RequiredNpcOrGo2  */ 0,
@@ -96,13 +96,13 @@ REPLACE INTO `quest_template` (`ID`, `Method`, `QuestLevel`, `MinLevel`, `QuestS
  /*  RequiredSourceItemCount2  */ 0,
  /*  RequiredSourceItemCount3  */ 0,
  /*  RequiredSourceItemCount4  */ 0,
- /*  RequiredItemId1  */ 700517,
+ /*  RequiredItemId1  */ 5363,
  /*  RequiredItemId2  */ 0,
  /*  RequiredItemId3  */ 0,
  /*  RequiredItemId4  */ 0,
  /*  RequiredItemId5  */ 0,
  /*  RequiredItemId6  */ 0,
- /*  RequiredItemCount1  */ 1,
+ /*  RequiredItemCount1  */ 20,
  /*  RequiredItemCount2  */ 0,
  /*  RequiredItemCount3  */ 0,
  /*  RequiredItemCount4  */ 0,
@@ -136,12 +136,12 @@ REPLACE INTO `quest_template` (`ID`, `Method`, `QuestLevel`, `MinLevel`, `QuestS
 
 
 REPLACE INTO `quest_template_addon` (`ID`, `MaxLevel`, `AllowableClasses`, `SourceSpellID`, `PrevQuestID`, `NextQuestID`, `ExclusiveGroup`, `RewardMailTemplateID`, `RewardMailDelay`, `RequiredSkillID`, `RequiredSkillPoints`, `RequiredMinRepFaction`, `RequiredMaxRepFaction`, `RequiredMinRepValue`, `RequiredMaxRepValue`, `ProvidedItemCount`, `SpecialFlags`) VALUES
-( /*  ID  */802039,
+( /*  ID  */802042,
   /*  MaxLevel  */80,
   /*  AllowableClasses  */2047,
   /*  SourceSpellID  */ 0,
-  /*   PrevQuestID */ 802038,
-  /*  NextQuestID  */802040,
+  /*   PrevQuestID */ 802041,
+  /*  NextQuestID  */802043,
   /*  ExclusiveGroup  */ 0,
   /*   RewardMailTemplateID */ 0,
   /*  RewardMailDelay  */ 0,
@@ -156,7 +156,7 @@ REPLACE INTO `quest_template_addon` (`ID`, `MaxLevel`, `AllowableClasses`, `Sour
 
 
 REPLACE INTO `creature_questender` (`id`, `quest`) VALUES
-(28716, 802039);
+(800015, 802042);
 
 REPLACE INTO `creature_queststarter` (`id`, `quest`) VALUES
-(27990, 802039);
+(800015, 802042);

@@ -141,7 +141,7 @@ public:
 				switch (eventId)
 				{
 				case EVENT_CURRUPTION:
-					if (Unit* target = SelectTarget(SELECT_TARGET_RANDOM, 1, 100.0f)){
+					if (Unit* target = SelectTarget(SELECT_TARGET_RANDOM, 1)){
 						DoCastVictim(SPELL_CORRUPTION);		
 					}
 					_events.ScheduleEvent(EVENT_CURRUPTION, 10000);
@@ -160,7 +160,9 @@ public:
 					break;
 				case EVENT_DOMINATE_MIND:
 					Talk(SAY_BERSERK);
-					DoCastVictim(SPELL_DOMINATE_MIND);
+					if (Unit* target = SelectTarget(SELECT_TARGET_TOPAGGRO,0)){
+						DoCastVictim(SPELL_DOMINATE_MIND);
+					}
 					_events.ScheduleEvent(EVENT_DOMINATE_MIND, 25000);
 					break;
 				case EVENT_EARTH:
@@ -204,6 +206,9 @@ public:
 	{
 		return new tolreosAI(creature);
 	}
+
+
+
 
 
 
