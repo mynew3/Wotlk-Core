@@ -204,7 +204,7 @@ public:
 			Map::PlayerList const &PlList = pPlayer->GetMap()->GetPlayers();
 			if (PlList.isEmpty())
 				return;
-
+			
 			for (Map::PlayerList::const_iterator i = PlList.begin(); i != PlList.end(); ++i)
 			{
 				if (Player* player = i->GetSource())
@@ -220,6 +220,7 @@ public:
 						}
 						else {
 							player->SendQuestFailed(899000,EQUIP_ERR_OK);
+							player->SetQuestStatus(899000,Q );
 						}
 					
 					}
