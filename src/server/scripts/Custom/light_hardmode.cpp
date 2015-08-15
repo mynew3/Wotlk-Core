@@ -220,7 +220,7 @@ public:
 						}
 						else {
 							player->SendQuestFailed(899000,EQUIP_ERR_OK);
-							player->SetQuestStatus(899000,Q );
+							
 						}
 					
 					}
