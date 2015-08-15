@@ -1333,44 +1333,55 @@ class npc_dark_nucleus : public CreatureScript
                 ScriptedAI::MoveInLineOfSight(who);
             }
 
-            void DamageTaken(Unit* attacker, uint32& /*damage*/) override
-            {
-                if (attacker == me)
-                    return;
 
-                me->DeleteThreatList();
-                me->AddThreat(attacker, 500000000.0f);
-            }
+			void DamageTaken(Unit* attacker, uint32& /*damage*/) override
+			{
+				if (attacker == me)
+					return;
 
-            void UpdateAI(uint32 diff) override
-            {
-                if (!UpdateVictim())
-                    return;
+				me->DeleteThreatList();
+				me->AddThreat(attacker, 500000000.0f);
+			}
 
-                if (_targetAuraCheck <= diff)
-                {
-                    _targetAuraCheck = 1000;
-                    if (Unit* victim = me->GetVictim())
-                    {
-                        if (me->GetDistance(victim) < 15.0f &&
-                            !victim->HasAura(SPELL_SHADOW_RESONANCE_RESIST, me->GetGUID()))
-                        {
-                            DoCast(victim, SPELL_SHADOW_RESONANCE_RESIST);
-                            me->ClearUnitState(UNIT_STATE_CASTING);
-                        }
-                        else
-                            MoveInLineOfSight(me->GetVictim());
-                    }
-                }
-                else
-                    _targetAuraCheck -= diff;
-            }
+			void SpellHit(Unit* caster, SpellInfo const* SPELL)
+			{
 
-        private:
-            uint32 _targetAuraCheck;
-            bool _lockedTarget;
-        };
+				if (caster == me)
+					return;
+				me->DeleteThreatList();
+				me->AddThreat(caster, 500000000.0f);
+			}
+           
+			void UpdateAI(uint32 diff) override
+			{
+				if (!UpdateVictim())
+					return;
 
+				if (_targetAuraCheck <= diff)
+				{
+					_targetAuraCheck = 1000;
+					if (Unit* victim = me->GetVictim())
+					{
+						if (me->GetDistance(victim) < 15.0f &&
+							!victim->HasAura(SPELL_SHADOW_RESONANCE_RESIST, me->GetGUID()))
+						{
+							DoCast(victim, SPELL_SHADOW_RESONANCE_RESIST);
+							me->ClearUnitState(UNIT_STATE_CASTING);
+						}
+						else
+							MoveInLineOfSight(me->GetVictim());
+					}
+				}
+				else
+					_targetAuraCheck -= diff;
+			}
+
+		private:
+			uint32 _targetAuraCheck;
+			bool _lockedTarget;
+		};
+
+		
         CreatureAI* GetAI(Creature* creature) const override
         {
             return GetIcecrownCitadelAI<npc_dark_nucleusAI>(creature);
