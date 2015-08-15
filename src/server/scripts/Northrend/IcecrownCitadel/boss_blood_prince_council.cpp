@@ -1310,6 +1310,8 @@ class npc_dark_nucleus : public CreatureScript
 
             void Reset() override
             {
+				me->SetDisableGravity(true);
+				me->SetByteValue(UNIT_FIELD_BYTES_1, 3, UNIT_BYTE1_FLAG_ALWAYS_STAND | UNIT_BYTE1_FLAG_HOVER);
                 me->SetReactState(REACT_DEFENSIVE);
                 me->CastSpell(me, SPELL_SHADOW_RESONANCE_AURA, true);
             }
@@ -1331,6 +1333,7 @@ class npc_dark_nucleus : public CreatureScript
 
             {
                 ScriptedAI::MoveInLineOfSight(who);
+				
             }
 
 
@@ -1343,7 +1346,7 @@ class npc_dark_nucleus : public CreatureScript
 				me->AddThreat(attacker, 500000000.0f);
 			}
 
-			void SpellHit(Unit* caster, SpellInfo const* SPELL)
+			void SpellHit(Unit* caster, SpellInfo const* )
 			{
 
 				if (caster == me)
