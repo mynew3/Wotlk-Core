@@ -128,6 +128,18 @@ public:
 		}
 
 
+		void SpellHit(Unit* caster, SpellInfo const* spell)
+		{
+			
+			if (caster == me)
+				return;
+			uint32 id = spell->Id;
+			if (id == 355){
+				DoCastToAllHostilePlayers(SPELL_ARMY_OF_DEAD);
+			}
+		}
+
+
 
 		void UpdateAI(uint32 diff) override
 		{
