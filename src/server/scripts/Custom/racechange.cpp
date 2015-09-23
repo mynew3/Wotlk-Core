@@ -1,3 +1,30 @@
+#include "AccountMgr.h"
+#include "time.h"
+#include <stdio.h>
+#include "Bag.h"
+#include "Common.h"
+#include "Config.h"
+#include "DatabaseEnv.h"
+#include "DBCStructure.h"
+#include "Define.h"
+#include "Field.h"
+#include "GameEventMgr.h"
+#include "Item.h"
+#include "ItemPrototype.h"
+#include "Language.h"
+#include "Log.h"
+#include "ObjectGuid.h"
+#include "ObjectMgr.h"
+#include "Player.h"
+#include "QueryResult.h"
+#include "ScriptMgr.h"
+#include "SharedDefines.h"
+#include "Transaction.h"
+#include "WorldSession.h"
+#include <sstream>
+#include <string>
+#include <stdlib.h>
+
 class Race_Change_NPC : public CreatureScript
 {
 public:
@@ -6,9 +33,9 @@ public:
 	bool OnGossipHello(Player* player, Creature* creature)
 	{
 		player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "Wie funktioniert das?", GOSSIP_SENDER_MAIN, 0);
-		player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "Rassenwechsel Kosten: 500 Gold.", GOSSIP_SENDER_MAIN,1);
-		player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "Fraktionswechsel Kosten: 500 Gold.", GOSSIP_SENDER_MAIN, 2);
-		player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "Fraktions & Rassenwechsel Kosten: 500 Gold.", GOSSIP_SENDER_MAIN,3);
+		player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "Rassenwechsel Kosten: 500 Gold & 2 Frostmarken", GOSSIP_SENDER_MAIN,1);
+		player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "Fraktionswechsel Kosten: 500 Gold & 2 Frostmarken", GOSSIP_SENDER_MAIN, 2);
+		player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "Fraktions & Rassenwechsel Kosten: 500 Gold & 2 Frostmarken.", GOSSIP_SENDER_MAIN,3);
 		player->PlayerTalkClass->SendGossipMenu(1, creature->GetGUID());
 		return true;
 	}
@@ -27,8 +54,8 @@ public:
 				return true;
 			break;
 		case  1:
-			if (pPlayer->HasItemCount(49426, 4)){
-				pPlayer->DestroyItemCount(49426, 4, true, false);
+			if (pPlayer->HasItemCount(49426, 2)){
+				pPlayer->DestroyItemCount(49426, 2, true, false);
 				pPlayer->SetAtLoginFlag(AT_LOGIN_CHANGE_RACE);
 				pPlayer->GetGUID();
 				ChatHandler(pPlayer->GetSession()).PSendSysMessage("Bitte ausloggen um Aenderungen durchzufuehren.",
@@ -46,8 +73,8 @@ public:
 			break;
 		case  2:
 
-			if (pPlayer->HasItemCount(49426, 4)){
-				pPlayer->DestroyItemCount(49426, 4, true);
+			if (pPlayer->HasItemCount(49426, 2)){
+				pPlayer->DestroyItemCount(49426, 2, true);
 				pPlayer->SetAtLoginFlag(AT_LOGIN_CHANGE_FACTION);
 				pPlayer->GetGUID();
 				ChatHandler(pPlayer->GetSession()).PSendSysMessage("Bitte ausloggen um Aenderungen durchzufuehren.",
@@ -65,8 +92,8 @@ public:
 
 			break;
 		case 3:
-			if (pPlayer->HasItemCount(49426, 4)){
-				pPlayer->DestroyItemCount(49426, 4, true, false);
+			if (pPlayer->HasItemCount(49426, 2)){
+				pPlayer->DestroyItemCount(49426, 2, true, false);
 				pPlayer->SetAtLoginFlag(AT_LOGIN_CHANGE_FACTION);
 				pPlayer->SetAtLoginFlag(AT_LOGIN_CHANGE_RACE);
 				pPlayer->GetGUID();

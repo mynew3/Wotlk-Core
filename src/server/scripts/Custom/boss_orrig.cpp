@@ -1,4 +1,3 @@
-#include "ScriptPCH.h"
 #include "ObjectMgr.h"
 #include "ScriptMgr.h"
 #include "ScriptedCreature.h"
@@ -75,7 +74,7 @@ public:
 			_events.SetPhase(PHASE_ONE);
 			_events.ScheduleEvent(EVENT_SHADOW_SPIKE, 8000);
 			_events.ScheduleEvent(EVENT_FEAR, 10000);
-			_events.ScheduleEvent(EVENT_BLIZZARD, 15000);
+			_events.ScheduleEvent(EVENT_BLIZZARD, 30000);
 		
 		}
 
@@ -96,9 +95,9 @@ public:
 				_events.SetPhase(PHASE_THREE);
 				_events.ScheduleEvent(EVENT_ARCANE_BOMB, 5000);
 				_events.ScheduleEvent(EVENT_ENRAGE, 15000);
-				_events.ScheduleEvent(EVENT_ACID_BLAST, 6000);
+				_events.ScheduleEvent(EVENT_ACID_BLAST, 16000);
 				_events.ScheduleEvent(EVENT_ENRAGE, 20000);
-				_events.ScheduleEvent(EVENT_BLIZZARD, 12000);
+				_events.ScheduleEvent(EVENT_BLIZZARD, 30000);
 			}
 		}
 
@@ -119,7 +118,7 @@ public:
 		void JustDied(Unit* pPlayer)
 		{
 			char msg[250];
-			snprintf(msg, 250, "|cffff0000[Boss System]|r Boss|cffff6060 Orrig|r wurde getoetet! Respawn in 6h 33min.");
+			snprintf(msg, 250, "|cffff0000[Boss System]|r Boss|cffff6060 Orrig|r wurde getoetet! Respawn in 5h 33min.");
 			sWorld->SendGlobalText(msg, NULL);
 		}
 
@@ -148,12 +147,12 @@ public:
 					DoCast(SPELL_ENRAGE);
 					break;
 				case EVENT_BLIZZARD:
-					DoCastToAllHostilePlayers(SPELL_BLIZZARD);
+					DoCastVictim(SPELL_BLIZZARD);
 					_events.ScheduleEvent(EVENT_BLIZZARD, 15000);
 					break;
 				case EVENT_POISON_SHOCK:
 					Talk(SAY_BERSERK);
-					DoCast(me, SPELL_POISON_SHOCK);
+					DoCastVictim(SPELL_POISON_SHOCK);
 					_events.ScheduleEvent(EVENT_POISON_SHOCK, 12000);
 					break;
 				case EVENT_ARCANE_BOMB:

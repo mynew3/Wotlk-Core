@@ -124,6 +124,15 @@ void AddSC_light();
 void AddSC_lighthardmode();
 //dark2
 void AddSC_dark2();
+//playerhello
+void AddSC_Announce_NewPlayer();
+//halloween
+void AddSC_halloween();
+//portitem
+void AddSC_port_item();
+//wandervolk
+void AddSC_wandervolk();
+
 
 #ifdef SCRIPTS
 //world
@@ -407,7 +416,6 @@ void AddSC_orgrimmar();
 void AddSC_silithus();
 void AddSC_stonetalon_mountains();
 void AddSC_tanaris();
-void AddSC_teldrassil();
 void AddSC_the_barrens();
 void AddSC_thousand_needles();
 void AddSC_thunder_bluff();
@@ -864,6 +872,14 @@ void AddCommandScripts()
 	AddSC_lighthardmode();
 	//dark2
 	AddSC_dark2();
+	//helloplayer
+	AddSC_Announce_NewPlayer();
+	//halloween
+	AddSC_halloween();
+	//portitem
+	AddSC_port_item();
+	//wandervolk
+	AddSC_wandervolk();
 }
 
 void AddWorldScripts()
@@ -1160,7 +1176,6 @@ void AddKalimdorScripts()
     AddSC_silithus();
     AddSC_stonetalon_mountains();
     AddSC_tanaris();
-    AddSC_teldrassil();
     AddSC_the_barrens();
     AddSC_thousand_needles();
     AddSC_thunder_bluff();
